@@ -1,25 +1,27 @@
-# Simple container running `asciidoctor`
+Simple container running `asciidoctor`
+--------------------------------------
 
-The application asciidoctor will use `/doc` as the workdir. Be sure to mount a volume on this directory.
+The application asciidoctor will use `/doc` as the workdir. Be sure to
+mount a volume on this directory.
 
 Build the container or pull from a registry
-```
+
+....
 $ docker build -t asciidoctor .
-```
+....
 
 Then use as follows:
 
-```
+....
 $ docker run --rm \
-    -v $(pwd)/documentation:/doc \
+    -v $PWD:/doc \
     asciidoctor \
     -b html5 README.adoc
-```
+....
 
 or
 
-```
+....
 $ alias asciidoctor='docker run --rm -v $PWD:/doc registry.gitlab.com/gbraad/asciidoctor-centos:latest'
 $ asciidoctor -b html README.adoc
-```
-
+....
