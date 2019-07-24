@@ -5,10 +5,17 @@ services:
 before_script:
   - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
 
-build_image:
+build_asciidoctor_image:
   script:
-    - docker build -t registry.gitlab.com/gbraad/asciidoctor-centos:latest .
+    - docker build -t registry.gitlab.com/gbraad/asciidoctor-centos:latest -f asciidoctor.Dockerfile ..
     - docker push registry.gitlab.com/gbraad/asciidoctor-centos:latest
+  only:
+    - master
+
+build_asciidoctor_image:
+  script:
+    - docker build -t registry.gitlab.com/gbraad/asciidoctor-centos/pdf:latest -f asciidoctor-pdf.Dockerfile ..
+    - docker push registry.gitlab.com/gbraad/asciidoctor-centos/pdf:latest
   only:
     - master
 

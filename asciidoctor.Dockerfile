@@ -6,8 +6,8 @@ RUN yum install -y epel-release && \
     gem install coderay && \
     yum clean all
 
-RUN mkdir -p /doc
-VOLUME /doc
-WORKDIR /doc
+RUN mkdir -p /docs
+VOLUME /docs
+WORKDIR /docs
 
 ENTRYPOINT [ "asciidoctor" ]
